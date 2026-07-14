@@ -7,7 +7,13 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:angular-v18.0.0": "node dist/angular-v18.0.0/server/server.mjs"
+    "serve:ssr:angular-v18.0.0": "node dist/angular-v18.0.0/server/server.mjs",
+    "swagger:split": "node scripts/split-swagger.js",
+    "generate:auth": "nswag run nswag.auth.json",
+    "generate:todos": "nswag run nswag.todos.json",
+    "generate:tasks": "nswag run nswag.tasks.json",
+    "generate:items": "nswag run nswag.items.json",
+    "generate:api": "npm run swagger:split && npm run generate:auth && npm run generate:todos && npm run generate:tasks && npm run generate:items"
   },
   "private": true,
   "dependencies": {
