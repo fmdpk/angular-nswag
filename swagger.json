@@ -1,0 +1,891 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Todo Application",
+    "version": "1.0.0",
+    "description": "todo crud api with supabase as backend service and user authentication"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Auth",
+      "description": "Operations related to authentication with help of supabase"
+    },
+    {
+      "name": "Todos",
+      "description": "Operations related to todo crud.Datastore is supabase"
+    },
+    {
+      "name": "Tasks",
+      "description": "Operations related to task crud.Datastore is supabase"
+    },
+    {
+      "name": "Items",
+      "description": "Operations related to item crud.Datastore is a json file"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "paths": {
+    "/auth/signup": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Sign up user",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "a token is send to entered email"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "delete user",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "user deleted successfully"
+          }
+        }
+      }
+    },
+    "/auth/signin-password": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Sign in with password",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User signed in successfully"
+          }
+        }
+      }
+    },
+    "/auth/signin-otp": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Sign in user with otp",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "a token is send to entered email"
+          }
+        }
+      }
+    },
+    "/auth/reset-password": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "send reset password email",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "reset password email sent"
+          }
+        }
+      }
+    },
+    "/auth/update-password": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "update user password",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "password": {
+                    "type": "string"
+                  },
+                  "rePassword": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "password updated successfully"
+          }
+        }
+      }
+    },
+    "/auth/verify-signin-otp": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "verify signin otp",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "otp": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "verify otp sent from '/signin-otp'"
+          }
+        }
+      }
+    },
+    "/auth/verify-signup-otp": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "verify signup otp",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "otp": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "verify otp sent from '/signup'"
+          }
+        }
+      }
+    },
+    "/auth/user": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "get logged in user data",
+        "responses": {
+          "200": {
+            "description": "user successfully retrieved"
+          },
+          "404": {
+            "description": "user not found"
+          }
+        }
+      }
+    },
+    "/auth/get-new-session": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "get new session for logged in user",
+        "responses": {
+          "200": {
+            "description": "new session successfully retrieved"
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "log out user",
+        "responses": {
+          "200": {
+            "description": "user logged out successfully"
+          }
+        }
+      }
+    },
+    "/auth/mfa-enroll": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "enroll 'totp' MFA for user",
+        "responses": {
+          "200": {
+            "description": "MFA enrolled successfully"
+          }
+        }
+      }
+    },
+    "/auth/mfa-unenroll": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "unenroll user MFA",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "factorId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "MFA unenrolled successfully"
+          }
+        }
+      }
+    },
+    "/auth/verify-mfa": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "verify MFA",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "factorId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successfully verified MFA"
+          }
+        }
+      }
+    },
+    "/auth/create-mfa-challenge": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "create MFA challenge",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "factorId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successfully created MFA challenge"
+          }
+        }
+      }
+    },
+    "/auth/get-authenticator-assurance-level": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "get authenticator assurance level",
+        "responses": {
+          "200": {
+            "description": "successfully got assurance level"
+          }
+        }
+      }
+    },
+    "/auth/verify-mfa-challenge": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "verify MFA challenge",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "factorId": {
+                    "type": "string"
+                  },
+                  "challengeId": {
+                    "type": "string"
+                  },
+                  "code": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successfully verified MFA challenge"
+          }
+        }
+      }
+    },
+    "/auth/delete-user-factor": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "delete user factor",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "factorId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successfully deleted user factor"
+          }
+        }
+      }
+    },
+    "/api/items": {
+      "post": {
+        "tags": [
+          "Items"
+        ],
+        "summary": "create an item",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "quantity": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "item created successfully"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Items"
+        ],
+        "summary": "get all items",
+        "responses": {
+          "200": {
+            "description": "items retrieved successfully"
+          }
+        }
+      }
+    },
+    "/api/items/{id}": {
+      "get": {
+        "tags": [
+          "Items"
+        ],
+        "summary": "get an item",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "item ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "item retrieved successfully"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Items"
+        ],
+        "summary": "update an item",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "item ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "quantity": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "item updated successfully"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Items"
+        ],
+        "summary": "delete an item",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "item ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "item deleted successfully"
+          }
+        }
+      }
+    },
+    "/api/tasks": {
+      "post": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "create a task item",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "task": {
+                    "type": "string"
+                  },
+                  "priority": {
+                    "type": "number"
+                  },
+                  "state": {
+                    "type": "number"
+                  },
+                  "task_date": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "task item created successfully"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "get all tasks",
+        "responses": {
+          "200": {
+            "description": "task items retrieved successfully"
+          }
+        }
+      }
+    },
+    "/api/tasks/{id}": {
+      "get": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "get a task item",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "task ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "task item retrieved successfully"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "update a task item",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "task ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "task": {
+                    "type": "string"
+                  },
+                  "priority": {
+                    "type": "number"
+                  },
+                  "state": {
+                    "type": "number"
+                  },
+                  "task_date": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "task item updated successfully"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "delete a task item",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "task ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "task item deleted successfully"
+          }
+        }
+      }
+    },
+    "/api/todos": {
+      "post": {
+        "tags": [
+          "Todos"
+        ],
+        "summary": "create a todo item",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "task": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "todo item created successfully"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Todos"
+        ],
+        "summary": "get all todos",
+        "responses": {
+          "200": {
+            "description": "todo items retrieved successfully"
+          }
+        }
+      }
+    },
+    "/api/todos/{id}": {
+      "get": {
+        "tags": [
+          "Todos"
+        ],
+        "summary": "get a todo item",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "todo item ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "todo item retrieved successfully"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Todos"
+        ],
+        "summary": "update a todo item",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "todo item ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "task": {
+                    "type": "string"
+                  },
+                  "is_complete": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "todo item updated successfully"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Todos"
+        ],
+        "summary": "delete a todo item",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "todo item ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "todo item deleted successfully"
+          }
+        }
+      }
+    }
+  }
+}
