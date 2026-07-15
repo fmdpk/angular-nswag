@@ -113,6 +113,19 @@
         }
       }
     },
+    "/api/Service/Account/Logout": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "operationId": "ApiServiceAccountLogoutGet",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Service/AccountCode/GetAccountCodes": {
       "post": {
         "tags": [
@@ -291,6 +304,223 @@
         }
       }
     },
+    "/api/Service/AccountCode/GetAllAccountCodes": {
+      "get": {
+        "tags": [
+          "AccountCode"
+        ],
+        "operationId": "ApiServiceAccountcodeGetallaccountcodesGet",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListResultDtoOfAccountCodeWithLevelDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListResultDtoOfAccountCodeWithLevelDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListResultDtoOfAccountCodeWithLevelDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Service/AccountCode/CreateOrUpdateAccountCode": {
+      "post": {
+        "tags": [
+          "AccountCode"
+        ],
+        "operationId": "ApiServiceAccountcodeCreateorupdateaccountcodePost",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateAccountCodeInput"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateAccountCodeInput"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateAccountCodeInput"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateAccountCodeInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Service/AccountCode/GetAccountCodeForEdit": {
+      "get": {
+        "tags": [
+          "AccountCode"
+        ],
+        "operationId": "ApiServiceAccountcodeGetaccountcodeforeditGet",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountCodeEditDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountCodeEditDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountCodeEditDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Service/AccountCode/DeleteAccountCode": {
+      "delete": {
+        "tags": [
+          "AccountCode"
+        ],
+        "operationId": "ApiServiceAccountcodeDeleteaccountcodeDelete",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Service/AccountNatureType/GetAccountNatureTypes": {
+      "post": {
+        "tags": [
+          "AccountNatureType"
+        ],
+        "operationId": "ApiServiceAccountnaturetypeGetaccountnaturetypesPost",
+        "parameters": [
+          {
+            "name": "First",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Rows",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "SortField",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "SortOrder",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "MultiSortMeta",
+            "in": "query",
+            "schema": { }
+          },
+          {
+            "name": "Filters",
+            "in": "query",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/FilterMetadata"
+                },
+                "nullable": true
+              }
+            }
+          },
+          {
+            "name": "GlobalFilter",
+            "in": "query",
+            "schema": { }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/IGridOfBaseListDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IGridOfBaseListDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IGridOfBaseListDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Service/AccountNatureType/GetAccountNatureTypeComboboxItems": {
       "get": {
         "tags": [
@@ -366,117 +596,2968 @@
           }
         }
       }
+    },
+    "/api/Service/AccountNatureType/GetAccountNatureTypeForEdit": {
+      "get": {
+        "tags": [
+          "AccountNatureType"
+        ],
+        "operationId": "ApiServiceAccountnaturetypeGetaccountnaturetypeforeditGet",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/BaseEditDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BaseEditDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BaseEditDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Service/AccountNatureType/DeleteAccountNatureType": {
+      "delete": {
+        "tags": [
+          "AccountNatureType"
+        ],
+        "operationId": "ApiServiceAccountnaturetypeDeleteaccountnaturetypeDelete",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Service/AuditLog/GetAuditLogs": {
+      "post": {
+        "tags": [
+          "AuditLog"
+        ],
+        "operationId": "ApiServiceAuditlogGetauditlogsPost",
+        "parameters": [
+          {
+            "name": "First",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Rows",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "SortField",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "SortOrder",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "MultiSortMeta",
+            "in": "query",
+            "schema": { }
+          },
+          {
+            "name": "Filters",
+            "in": "query",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/FilterMetadata"
+                },
+                "nullable": true
+              }
+            }
+          },
+          {
+            "name": "GlobalFilter",
+            "in": "query",
+            "schema": { }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetAuditLogsInput"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetAuditLogsInput"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetAuditLogsInput"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetAuditLogsInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/IGridOfAuditLogListDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IGridOfAuditLogListDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IGridOfAuditLogListDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Service/BusinessCalendar/GetBusinessCalendars": {
+      "post": {
+        "tags": [
+          "BusinessCalendar"
+        ],
+        "operationId": "ApiServiceBusinesscalendarGetbusinesscalendarsPost",
+        "parameters": [
+          {
+            "name": "First",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Rows",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "SortField",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "SortOrder",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "MultiSortMeta",
+            "in": "query",
+            "schema": { }
+          },
+          {
+            "name": "Filters",
+            "in": "query",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/FilterMetadata"
+                },
+                "nullable": true
+              }
+            }
+          },
+          {
+            "name": "GlobalFilter",
+            "in": "query",
+            "schema": { }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetBusinessCalendarsInput"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetBusinessCalendarsInput"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetBusinessCalendarsInput"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetBusinessCalendarsInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/IGridOfBusinessCalendarListDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IGridOfBusinessCalendarListDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IGridOfBusinessCalendarListDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Service/BusinessCalendar/CreateOrUpdateBusinessCalendar": {
+      "post": {
+        "tags": [
+          "BusinessCalendar"
+        ],
+        "operationId": "ApiServiceBusinesscalendarCreateorupdatebusinesscalendarPost",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateBusinessCalendarInput"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateBusinessCalendarInput"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateBusinessCalendarInput"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateBusinessCalendarInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Service/BusinessCalendar/GetBusinessCalendarForEdit": {
+      "get": {
+        "tags": [
+          "BusinessCalendar"
+        ],
+        "operationId": "ApiServiceBusinesscalendarGetbusinesscalendarforeditGet",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/BusinessCalendarEditDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BusinessCalendarEditDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BusinessCalendarEditDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Service/BusinessCalendar/DeleteBusinessCalendar": {
+      "delete": {
+        "tags": [
+          "BusinessCalendar"
+        ],
+        "operationId": "ApiServiceBusinesscalendarDeletebusinesscalendarDelete",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Service/DataType/GetDataTypes": {
+      "post": {
+        "tags": [
+          "DataType"
+        ],
+        "operationId": "ApiServiceDatatypeGetdatatypesPost",
+        "parameters": [
+          {
+            "name": "First",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Rows",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "SortField",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "SortOrder",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "MultiSortMeta",
+            "in": "query",
+            "schema": { }
+          },
+          {
+            "name": "Filters",
+            "in": "query",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/FilterMetadata"
+                },
+                "nullable": true
+              }
+            }
+          },
+          {
+            "name": "GlobalFilter",
+            "in": "query",
+            "schema": { }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/IGridOfBaseListDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IGridOfBaseListDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IGridOfBaseListDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Service/DataType/GetDataTypeComboboxItems": {
+      "get": {
+        "tags": [
+          "DataType"
+        ],
+        "operationId": "ApiServiceDatatypeGetdatatypecomboboxitemsGet",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SelectedItemsOfInt32"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SelectedItemsOfInt32"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SelectedItemsOfInt32"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Service/DataType/CreateOrUpdateDataType": {
+      "post": {
+        "tags": [
+          "DataType"
+        ],
+        "operationId": "ApiServiceDatatypeCreateorupdatedatatypePost",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateBaseInput"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateBaseInput"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateBaseInput"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateBaseInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Service/DataType/GetDataTypeForEdit": {
+      "get": {
+        "tags": [
+          "DataType"
+        ],
+        "operationId": "ApiServiceDatatypeGetdatatypeforeditGet",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/BaseEditDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BaseEditDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BaseEditDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Service/DataType/DeleteDataType": {
+      "delete": {
+        "tags": [
+          "DataType"
+        ],
+        "operationId": "ApiServiceDatatypeDeletedatatypeDelete",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Service/DocumentType/GetDocumentTypes": {
+      "post": {
+        "tags": [
+          "DocumentType"
+        ],
+        "operationId": "ApiServiceDocumenttypeGetdocumenttypesPost",
+        "parameters": [
+          {
+            "name": "First",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Rows",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "SortField",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "SortOrder",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "MultiSortMeta",
+            "in": "query",
+            "schema": { }
+          },
+          {
+            "name": "Filters",
+            "in": "query",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/FilterMetadata"
+                },
+                "nullable": true
+              }
+            }
+          },
+          {
+            "name": "GlobalFilter",
+            "in": "query",
+            "schema": { }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/IGridOfBaseListDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IGridOfBaseListDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IGridOfBaseListDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Service/DocumentType/GetDocumentTypeComboboxItems": {
+      "get": {
+        "tags": [
+          "DocumentType"
+        ],
+        "operationId": "ApiServiceDocumenttypeGetdocumenttypecomboboxitemsGet",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SelectedItemsOfInt32"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SelectedItemsOfInt32"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SelectedItemsOfInt32"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Service/DocumentType/CreateOrUpdateDocumentType": {
+      "post": {
+        "tags": [
+          "DocumentType"
+        ],
+        "operationId": "ApiServiceDocumenttypeCreateorupdatedocumenttypePost",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateBaseInput"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateBaseInput"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateBaseInput"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateBaseInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Service/DocumentType/GetDocumentTypeForEdit": {
+      "get": {
+        "tags": [
+          "DocumentType"
+        ],
+        "operationId": "ApiServiceDocumenttypeGetdocumenttypeforeditGet",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/BaseEditDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BaseEditDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BaseEditDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Service/DocumentType/DeleteDocumentType": {
+      "delete": {
+        "tags": [
+          "DocumentType"
+        ],
+        "operationId": "ApiServiceDocumenttypeDeletedocumenttypeDelete",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Service/Edition/GetEditions": {
+      "post": {
+        "tags": [
+          "Edition"
+        ],
+        "operationId": "ApiServiceEditionGeteditionsPost",
+        "parameters": [
+          {
+            "name": "First",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Rows",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "SortField",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "SortOrder",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "MultiSortMeta",
+            "in": "query",
+            "schema": { }
+          },
+          {
+            "name": "Filters",
+            "in": "query",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/FilterMetadata"
+                },
+                "nullable": true
+              }
+            }
+          },
+          {
+            "name": "GlobalFilter",
+            "in": "query",
+            "schema": { }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/IGridOfEditionListDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IGridOfEditionListDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IGridOfEditionListDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Service/Edition/GetEditionComboboxItems": {
+      "get": {
+        "tags": [
+          "Edition"
+        ],
+        "operationId": "ApiServiceEditionGeteditioncomboboxitemsGet",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SelectedItemsOfInt32"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SelectedItemsOfInt32"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SelectedItemsOfInt32"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Service/Edition/CreateOrUpdateEdition": {
+      "post": {
+        "tags": [
+          "Edition"
+        ],
+        "operationId": "ApiServiceEditionCreateorupdateeditionPost",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateEditionInput"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateEditionInput"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateEditionInput"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateEditionInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Service/Edition/GetEditionForEdit": {
+      "get": {
+        "tags": [
+          "Edition"
+        ],
+        "operationId": "ApiServiceEditionGeteditionforeditGet",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/EditionEditDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EditionEditDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EditionEditDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Service/Edition/DeleteEdition": {
+      "delete": {
+        "tags": [
+          "Edition"
+        ],
+        "operationId": "ApiServiceEditionDeleteeditionDelete",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Service/FigureBalanceType/GetFigureBalanceTypes": {
+      "post": {
+        "tags": [
+          "FigureBalanceType"
+        ],
+        "operationId": "ApiServiceFigurebalancetypeGetfigurebalancetypesPost",
+        "parameters": [
+          {
+            "name": "First",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Rows",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "SortField",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "SortOrder",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "MultiSortMeta",
+            "in": "query",
+            "schema": { }
+          },
+          {
+            "name": "Filters",
+            "in": "query",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/FilterMetadata"
+                },
+                "nullable": true
+              }
+            }
+          },
+          {
+            "name": "GlobalFilter",
+            "in": "query",
+            "schema": { }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/IGridOfBaseListDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IGridOfBaseListDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IGridOfBaseListDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Service/FigureBalanceType/GetFigureBalanceTypeComboboxItems": {
+      "get": {
+        "tags": [
+          "FigureBalanceType"
+        ],
+        "operationId": "ApiServiceFigurebalancetypeGetfigurebalancetypecomboboxitemsGet",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SelectedItemsOfInt32"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SelectedItemsOfInt32"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SelectedItemsOfInt32"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Service/FigureBalanceType/CreateOrUpdateFigureBalanceType": {
+      "post": {
+        "tags": [
+          "FigureBalanceType"
+        ],
+        "operationId": "ApiServiceFigurebalancetypeCreateorupdatefigurebalancetypePost",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateBaseInput"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateBaseInput"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateBaseInput"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateBaseInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Service/FigureBalanceType/GetFigureBalanceTypeForEdit": {
+      "get": {
+        "tags": [
+          "FigureBalanceType"
+        ],
+        "operationId": "ApiServiceFigurebalancetypeGetfigurebalancetypeforeditGet",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/BaseEditDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BaseEditDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BaseEditDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Service/FigureBalanceType/DeleteFigureBalanceType": {
+      "delete": {
+        "tags": [
+          "FigureBalanceType"
+        ],
+        "operationId": "ApiServiceFigurebalancetypeDeletefigurebalancetypeDelete",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Service/Gl/GetGls": {
+      "get": {
+        "tags": [
+          "Gl"
+        ],
+        "operationId": "ApiServiceGlGetglsGet",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GlListDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GlListDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GlListDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Service/Gl67/GetGl67s": {
+      "post": {
+        "tags": [
+          "Gl67"
+        ],
+        "operationId": "ApiServiceGl67Getgl67sPost",
+        "parameters": [
+          {
+            "name": "First",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Rows",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "SortField",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "SortOrder",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "MultiSortMeta",
+            "in": "query",
+            "schema": { }
+          },
+          {
+            "name": "Filters",
+            "in": "query",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/FilterMetadata"
+                },
+                "nullable": true
+              }
+            }
+          },
+          {
+            "name": "GlobalFilter",
+            "in": "query",
+            "schema": { }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetGl67sInput"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetGl67sInput"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetGl67sInput"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetGl67sInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/IGridOfGl67ListDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IGridOfGl67ListDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IGridOfGl67ListDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Service/Gl67/CreateOrUpdateGl67": {
+      "post": {
+        "tags": [
+          "Gl67"
+        ],
+        "operationId": "ApiServiceGl67Createorupdategl67Post",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateGl67Input"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateGl67Input"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateGl67Input"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateGl67Input"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Service/Gl67/GetGl67ForEdit": {
+      "get": {
+        "tags": [
+          "Gl67"
+        ],
+        "operationId": "ApiServiceGl67Getgl67foreditGet",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Gl67EditDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Gl67EditDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Gl67EditDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Service/Gl67/DeleteGl67": {
+      "delete": {
+        "tags": [
+          "Gl67"
+        ],
+        "operationId": "ApiServiceGl67Deletegl67Delete",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Navigation/GetMenus": {
+      "get": {
+        "tags": [
+          "Navigation"
+        ],
+        "operationId": "ApiNavigationGetmenusGet",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserMenu"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserMenu"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserMenu"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Navigation/Login": {
+      "post": {
+        "tags": [
+          "Navigation"
+        ],
+        "operationId": "ApiNavigationLoginPost",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Service/OrganizationUnit/GetOrganizationUnits": {
+      "post": {
+        "tags": [
+          "OrganizationUnit"
+        ],
+        "operationId": "ApiServiceOrganizationunitGetorganizationunitsPost",
+        "parameters": [
+          {
+            "name": "First",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Rows",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "SortField",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "SortOrder",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "MultiSortMeta",
+            "in": "query",
+            "schema": { }
+          },
+          {
+            "name": "Filters",
+            "in": "query",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/FilterMetadata"
+                },
+                "nullable": true
+              }
+            }
+          },
+          {
+            "name": "GlobalFilter",
+            "in": "query",
+            "schema": { }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/IGridOfOrganizationUnitListDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IGridOfOrganizationUnitListDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IGridOfOrganizationUnitListDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Service/OrganizationUnit/GetOrganizationUnitComboboxItems": {
+      "get": {
+        "tags": [
+          "OrganizationUnit"
+        ],
+        "operationId": "ApiServiceOrganizationunitGetorganizationunitcomboboxitemsGet",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SelectedItemsOfInt64"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SelectedItemsOfInt64"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SelectedItemsOfInt64"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Service/OrganizationUnit/GetAllOrganizationUnits": {
+      "get": {
+        "tags": [
+          "OrganizationUnit"
+        ],
+        "operationId": "ApiServiceOrganizationunitGetallorganizationunitsGet",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListResultDtoOfOrganizationUnitWithLevelDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListResultDtoOfOrganizationUnitWithLevelDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListResultDtoOfOrganizationUnitWithLevelDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Service/OrganizationUnit/CreateOrUpdateOrganizationUnit": {
+      "post": {
+        "tags": [
+          "OrganizationUnit"
+        ],
+        "operationId": "ApiServiceOrganizationunitCreateorupdateorganizationunitPost",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateOrganizationUnitInput"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateOrganizationUnitInput"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateOrganizationUnitInput"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateOrganizationUnitInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Service/OrganizationUnit/GetOrganizationUnitForEdit": {
+      "get": {
+        "tags": [
+          "OrganizationUnit"
+        ],
+        "operationId": "ApiServiceOrganizationunitGetorganizationunitforeditGet",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrganizationUnitEditDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrganizationUnitEditDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrganizationUnitEditDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Service/OrganizationUnit/DeleteOrganizationUnit": {
+      "delete": {
+        "tags": [
+          "OrganizationUnit"
+        ],
+        "operationId": "ApiServiceOrganizationunitDeleteorganizationunitDelete",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Service/OrganType/GetOrganTypes": {
+      "post": {
+        "tags": [
+          "OrganType"
+        ],
+        "operationId": "ApiServiceOrgantypeGetorgantypesPost",
+        "parameters": [
+          {
+            "name": "First",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Rows",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "SortField",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "SortOrder",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "MultiSortMeta",
+            "in": "query",
+            "schema": { }
+          },
+          {
+            "name": "Filters",
+            "in": "query",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/FilterMetadata"
+                },
+                "nullable": true
+              }
+            }
+          },
+          {
+            "name": "GlobalFilter",
+            "in": "query",
+            "schema": { }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/IGridOfBaseListDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IGridOfBaseListDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IGridOfBaseListDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Service/OrganType/GetOrganTypeComboboxItems": {
+      "get": {
+        "tags": [
+          "OrganType"
+        ],
+        "operationId": "ApiServiceOrgantypeGetorgantypecomboboxitemsGet",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SelectedItemsOfInt32"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SelectedItemsOfInt32"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SelectedItemsOfInt32"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Service/OrganType/CreateOrUpdateOrganType": {
+      "post": {
+        "tags": [
+          "OrganType"
+        ],
+        "operationId": "ApiServiceOrgantypeCreateorupdateorgantypePost",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateBaseInput"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateBaseInput"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateBaseInput"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateBaseInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Service/OrganType/GetOrganTypeForEdit": {
+      "get": {
+        "tags": [
+          "OrganType"
+        ],
+        "operationId": "ApiServiceOrgantypeGetorgantypeforeditGet",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/BaseEditDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BaseEditDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BaseEditDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Service/OrganType/DeleteOrganType": {
+      "delete": {
+        "tags": [
+          "OrganType"
+        ],
+        "operationId": "ApiServiceOrgantypeDeleteorgantypeDelete",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Service/Permission/GetAllPermissions": {
+      "get": {
+        "tags": [
+          "Permission"
+        ],
+        "operationId": "ApiServicePermissionGetallpermissionsGet",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListResultDtoOfFlatPermissionWithLevelDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListResultDtoOfFlatPermissionWithLevelDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListResultDtoOfFlatPermissionWithLevelDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Service/Role/GetAllRoles": {
+      "get": {
+        "tags": [
+          "Role"
+        ],
+        "operationId": "ApiServiceRoleGetallrolesGet",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RoleListDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RoleListDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RoleListDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Service/Role/GetRoles": {
+      "post": {
+        "tags": [
+          "Role"
+        ],
+        "operationId": "ApiServiceRoleGetrolesPost",
+        "parameters": [
+          {
+            "name": "First",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Rows",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "SortField",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "SortOrder",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "MultiSortMeta",
+            "in": "query",
+            "schema": { }
+          },
+          {
+            "name": "Filters",
+            "in": "query",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/FilterMetadata"
+                },
+                "nullable": true
+              }
+            }
+          },
+          {
+            "name": "GlobalFilter",
+            "in": "query",
+            "schema": { }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetRolesInput"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetRolesInput"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetRolesInput"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetRolesInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/IGridOfRoleListDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IGridOfRoleListDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IGridOfRoleListDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Service/Role/GetRoleForEdit": {
+      "get": {
+        "tags": [
+          "Role"
+        ],
+        "operationId": "ApiServiceRoleGetroleforeditGet",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetRoleForEditOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetRoleForEditOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetRoleForEditOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Service/Role/CreateOrUpdateRole": {
+      "post": {
+        "tags": [
+          "Role"
+        ],
+        "operationId": "ApiServiceRoleCreateorupdaterolePost",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateRoleInput"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateRoleInput"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateRoleInput"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateRoleInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Service/Role/DeleteRole": {
+      "delete": {
+        "tags": [
+          "Role"
+        ],
+        "operationId": "ApiServiceRoleDeleteroleDelete",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Service/Session/GetCurrentLoginInformations": {
+      "get": {
+        "tags": [
+          "Session"
+        ],
+        "operationId": "ApiServiceSessionGetcurrentlogininformationsGet",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCurrentLoginInformationsOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCurrentLoginInformationsOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCurrentLoginInformationsOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Service/Tenant/GetTenants": {
+      "post": {
+        "tags": [
+          "Tenant"
+        ],
+        "operationId": "ApiServiceTenantGettenantsPost",
+        "parameters": [
+          {
+            "name": "First",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Rows",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "SortField",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "SortOrder",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "MultiSortMeta",
+            "in": "query",
+            "schema": { }
+          },
+          {
+            "name": "Filters",
+            "in": "query",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/FilterMetadata"
+                },
+                "nullable": true
+              }
+            }
+          },
+          {
+            "name": "GlobalFilter",
+            "in": "query",
+            "schema": { }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/IGridOfTenantListDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IGridOfTenantListDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IGridOfTenantListDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Service/Tenant/GetTenantComboboxItems": {
+      "get": {
+        "tags": [
+          "Tenant"
+        ],
+        "operationId": "ApiServiceTenantGettenantcomboboxitemsGet",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SelectedItemsOfInt32"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SelectedItemsOfInt32"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SelectedItemsOfInt32"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Service/Tenant/CreateOrUpdateTenant": {
+      "post": {
+        "tags": [
+          "Tenant"
+        ],
+        "operationId": "ApiServiceTenantCreateorupdatetenantPost",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateTenantInput"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateTenantInput"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateTenantInput"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateTenantInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Service/Tenant/GetTenantForEdit": {
+      "get": {
+        "tags": [
+          "Tenant"
+        ],
+        "operationId": "ApiServiceTenantGettenantforeditGet",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantEditDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantEditDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantEditDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Service/Tenant/DeleteTenant": {
+      "delete": {
+        "tags": [
+          "Tenant"
+        ],
+        "operationId": "ApiServiceTenantDeletetenantDelete",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Service/Users/GetUsers": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "operationId": "ApiServiceUsersGetusersPost",
+        "parameters": [
+          {
+            "name": "First",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Rows",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "SortField",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "SortOrder",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "MultiSortMeta",
+            "in": "query",
+            "schema": { }
+          },
+          {
+            "name": "Filters",
+            "in": "query",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/FilterMetadata"
+                },
+                "nullable": true
+              }
+            }
+          },
+          {
+            "name": "GlobalFilter",
+            "in": "query",
+            "schema": { }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetUsersInput"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetUsersInput"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetUsersInput"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetUsersInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/IGridOfUserListDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IGridOfUserListDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IGridOfUserListDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Service/Users/GetUserForEdit": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "operationId": "ApiServiceUsersGetuserforeditGet",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserForEditOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserForEditOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserForEditOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Service/Users/GetUserPermissionsForEdit": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "operationId": "ApiServiceUsersGetuserpermissionsforeditGet",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserPermissionsForEditOutput"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserPermissionsForEditOutput"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserPermissionsForEditOutput"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Service/Users/UpdateUserPermissions": {
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "operationId": "ApiServiceUsersUpdateuserpermissionsPut",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserPermissionsInput"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserPermissionsInput"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserPermissionsInput"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserPermissionsInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Service/Users/CreateOrUpdateUser": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "operationId": "ApiServiceUsersCreateorupdateuserPost",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateUserInput"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateUserInput"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateUserInput"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateUserInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Service/Users/DeleteUser": {
+      "delete": {
+        "tags": [
+          "Users"
+        ],
+        "operationId": "ApiServiceUsersDeleteuserDelete",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Service/Users/UnlockUser": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "operationId": "ApiServiceUsersUnlockuserPost",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/EntityDtoOfInt64"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EntityDtoOfInt64"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EntityDtoOfInt64"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/EntityDtoOfInt64"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
-      "LoginVm": {
-        "required": [
-          "password",
-          "username"
-        ],
+      "AccountCodeEditDto": {
         "type": "object",
         "properties": {
-          "tenancyName": {
-            "type": "string",
-            "nullable": true
-          },
-          "username": {
-            "minLength": 1,
-            "type": "string"
-          },
-          "password": {
-            "minLength": 1,
-            "type": "string"
-          }
-        },
-        "additionalProperties": false
-      },
-      "FullAuthenticateResultModel": {
-        "type": "object",
-        "properties": {
-          "expireInSeconds": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "userId": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "refreshToken": {
-            "type": "string",
-            "nullable": true
-          },
-          "refreshTokenExpireInSeconds": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "encryptedAccessToken": {
-            "type": "string",
-            "nullable": true
-          },
-          "accessToken": {
-            "type": "string",
-            "nullable": true
-          },
-          "fullName": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "RefreshTokenVm": {
-        "type": "object",
-        "properties": {
-          "refreshToken": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "AuthenticateResultModel": {
-        "type": "object",
-        "properties": {
-          "accessToken": {
-            "type": "string",
-            "nullable": true
-          },
-          "fullName": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "GetAccountCodesInput": {
-        "type": "object",
-        "properties": {
-          "filter": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "IGridOfAccountCodeListDto": {
-        "type": "object",
-        "properties": {
-          "rowDatas": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AccountCodeListDto"
-            },
-            "nullable": true
-          },
-          "total": {
+          "parentId": {
             "type": "integer",
             "format": "int32",
             "nullable": true
           },
-          "bottomData": {
-            "$ref": "#/components/schemas/AccountCodeListDto"
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "accountNatureTypeId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -517,10 +3598,114 @@
         },
         "additionalProperties": false
       },
-      "SelectedItemsOfInt64": {
+      "AccountCodeWithLevelDto": {
         "type": "object",
         "properties": {
-          "title": {
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountCodeWithLevelDto"
+            },
+            "nullable": true
+          },
+          "parentId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastModificationTime": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastModifierUserId": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "creationTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creatorUserId": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AuditLogListDto": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "impersonatorTenantId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "impersonatorUserId": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "serviceName": {
+            "type": "string",
+            "nullable": true
+          },
+          "methodName": {
+            "type": "string",
+            "nullable": true
+          },
+          "parameters": {
+            "type": "string",
+            "nullable": true
+          },
+          "executionTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "executionDuration": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "clientIpAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "clientName": {
+            "type": "string",
+            "nullable": true
+          },
+          "browserInfo": {
+            "type": "string",
+            "nullable": true
+          },
+          "exception": {
+            "type": "string",
+            "nullable": true
+          },
+          "customData": {
             "type": "string",
             "nullable": true
           },
@@ -531,9 +3716,27 @@
         },
         "additionalProperties": false
       },
-      "SelectedItemsOfInt32": {
+      "AuthenticateResultModel": {
         "type": "object",
         "properties": {
+          "accessToken": {
+            "type": "string",
+            "nullable": true
+          },
+          "fullName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BaseEditDto": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
           "title": {
             "type": "string",
             "nullable": true
@@ -541,6 +3744,134 @@
           "id": {
             "type": "integer",
             "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "BaseListDto": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "BusinessCalendarEditDto": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "tenantId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "sepehriRequired": {
+            "type": "boolean"
+          },
+          "sonatiRequired": {
+            "type": "boolean"
+          },
+          "yekparcheRequired": {
+            "type": "boolean"
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "BusinessCalendarListDto": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "tenantId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tenantName": {
+            "type": "string",
+            "nullable": true
+          },
+          "sepehriRequired": {
+            "type": "boolean"
+          },
+          "sonatiRequired": {
+            "type": "boolean"
+          },
+          "yekparcheRequired": {
+            "type": "boolean"
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateOrUpdateAccountCodeInput": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "parentId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "accountNatureTypeId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -565,6 +3896,935 @@
             "maxLength": 30,
             "minLength": 0,
             "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateOrUpdateBusinessCalendarInput": {
+        "required": [
+          "date",
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "title": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "tenantId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "sepehriRequired": {
+            "type": "boolean"
+          },
+          "sonatiRequired": {
+            "type": "boolean"
+          },
+          "yekparcheRequired": {
+            "type": "boolean"
+          },
+          "isActive": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateOrUpdateEditionInput": {
+        "required": [
+          "displayName",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "displayName": {
+            "maxLength": 30,
+            "minLength": 0,
+            "type": "string"
+          },
+          "name": {
+            "maxLength": 30,
+            "minLength": 0,
+            "type": "string"
+          },
+          "sepehriRequired": {
+            "type": "boolean"
+          },
+          "sonatiRequired": {
+            "type": "boolean"
+          },
+          "yekparcheRequired": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateOrUpdateGl67Input": {
+        "required": [
+          "organCode"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "organCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "organTypeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "documentDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "documentTypeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "genCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "auxCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "debit": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "credit": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalDebit": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalCredit": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "remainDebit": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "remainCredit": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "documentNoFrom": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "documentNoTo": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dataTypeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "financialYear": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateOrUpdateOrganizationUnitInput": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "parentId": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "displayName": {
+            "type": "string",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateOrUpdateRoleInput": {
+        "required": [
+          "grantedPermissionNames",
+          "role"
+        ],
+        "type": "object",
+        "properties": {
+          "role": {
+            "$ref": "#/components/schemas/RoleEditDto"
+          },
+          "grantedPermissionNames": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateOrUpdateTenantInput": {
+        "required": [
+          "name",
+          "tenancyName"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "tenancyName": {
+            "maxLength": 30,
+            "minLength": 0,
+            "type": "string"
+          },
+          "name": {
+            "maxLength": 30,
+            "minLength": 0,
+            "type": "string"
+          },
+          "connectionString": {
+            "maxLength": 1024,
+            "type": "string",
+            "nullable": true
+          },
+          "editionId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateOrUpdateUserInput": {
+        "required": [
+          "assignedRoleNames",
+          "user"
+        ],
+        "type": "object",
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/UserEditDto"
+          },
+          "assignedRoleNames": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "sendActivationEmail": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "setRandomPassword": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "organizationUnits": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EditionEditDto": {
+        "type": "object",
+        "properties": {
+          "displayName": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "sepehriRequired": {
+            "type": "boolean"
+          },
+          "sonatiRequired": {
+            "type": "boolean"
+          },
+          "yekparcheRequired": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "EditionListDto": {
+        "type": "object",
+        "properties": {
+          "displayName": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "sepehriRequired": {
+            "type": "boolean"
+          },
+          "sonatiRequired": {
+            "type": "boolean"
+          },
+          "yekparcheRequired": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "EntityDtoOfInt64": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      },
+      "EnumCharacter": {
+        "enum": [
+          0,
+          1,
+          2
+        ],
+        "type": "integer",
+        "format": "int32",
+        "x-enumNames": [
+          "Default",
+          "Persian",
+          "Arabic"
+        ]
+      },
+      "EnumNumber": {
+        "enum": [
+          0,
+          1,
+          2
+        ],
+        "type": "integer",
+        "format": "int32",
+        "x-enumNames": [
+          "Default",
+          "Persian",
+          "Latin"
+        ]
+      },
+      "EnumType": {
+        "enum": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ],
+        "type": "integer",
+        "format": "int32",
+        "x-enumNames": [
+          "Equals",
+          "StartWith",
+          "EndWith",
+          "Contains",
+          "Bigger",
+          "BiggerEquals",
+          "SmallerEquals",
+          "Smaller",
+          "Between",
+          "BetweenEquals",
+          "NotEquals",
+          "EqualsNull",
+          "NotEqualsNull",
+          "In"
+        ]
+      },
+      "FilterMetadata": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "nullable": true
+          },
+          "matchMode": {
+            "type": "string",
+            "nullable": true
+          },
+          "operator": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FlatPermissionDto": {
+        "type": "object",
+        "properties": {
+          "parentName": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "displayName": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "isGrantedByDefault": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "FlatPermissionWithLevelDto": {
+        "type": "object",
+        "properties": {
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FlatPermissionWithLevelDto"
+            },
+            "nullable": true
+          },
+          "parentName": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "displayName": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "isGrantedByDefault": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "FullAuthenticateResultModel": {
+        "type": "object",
+        "properties": {
+          "expireInSeconds": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "refreshToken": {
+            "type": "string",
+            "nullable": true
+          },
+          "refreshTokenExpireInSeconds": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "encryptedAccessToken": {
+            "type": "string",
+            "nullable": true
+          },
+          "accessToken": {
+            "type": "string",
+            "nullable": true
+          },
+          "fullName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetAccountCodesInput": {
+        "type": "object",
+        "properties": {
+          "filter": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetAuditLogsInput": {
+        "type": "object",
+        "properties": {
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetBusinessCalendarsInput": {
+        "type": "object",
+        "properties": {
+          "filter": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetCurrentLoginInformationsOutput": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/UserLoginInfoDto"
+          },
+          "tenant": {
+            "$ref": "#/components/schemas/TenantLoginInfoDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetGl67sInput": {
+        "type": "object",
+        "properties": {
+          "filter": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetRoleForEditOutput": {
+        "type": "object",
+        "properties": {
+          "role": {
+            "$ref": "#/components/schemas/RoleEditDto"
+          },
+          "permissions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FlatPermissionDto"
+            },
+            "nullable": true
+          },
+          "grantedPermissionNames": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetRolesInput": {
+        "type": "object",
+        "properties": {
+          "permissions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetUserForEditOutput": {
+        "type": "object",
+        "properties": {
+          "profilePictureId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserEditDto"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserRoleDto"
+            },
+            "nullable": true
+          },
+          "allOrganizationUnits": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrganizationUnitDto"
+            },
+            "nullable": true
+          },
+          "memberedOrganizationUnits": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "allowedUserNameCharacters": {
+            "type": "string",
+            "nullable": true
+          },
+          "isSMTPSettingsProvided": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetUserPermissionsForEditOutput": {
+        "type": "object",
+        "properties": {
+          "permissions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FlatPermissionDto"
+            },
+            "nullable": true
+          },
+          "grantedPermissionNames": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetUsersInput": {
+        "type": "object",
+        "properties": {
+          "filter": {
+            "type": "string",
+            "nullable": true
+          },
+          "permissions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "role": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "onlyLockedUsers": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Gl67EditDto": {
+        "type": "object",
+        "properties": {
+          "organCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "organTypeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "organTypeTitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "documentDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "documentTypeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "documentTypeTitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "genCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "auxCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "debit": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "credit": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalDebit": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalCredit": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "remainDebit": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "remainCredit": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "documentNoFrom": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "documentNoTo": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dataTypeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dataTypeTitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "financialYear": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Gl67ListDto": {
+        "type": "object",
+        "properties": {
+          "organCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "organTypeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "organTypeTitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "documentDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "documentTypeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "documentTypeTitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "genCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "auxCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "debit": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "credit": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalDebit": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalCredit": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "remainDebit": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "remainCredit": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "documentNoFrom": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "documentNoTo": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dataTypeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dataTypeTitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "financialYear": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GlListDto": {
+        "type": "object",
+        "properties": {
+          "organCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "organName": {
+            "type": "string",
+            "nullable": true
+          },
+          "tenantName": {
+            "type": "string",
+            "nullable": true
+          },
+          "documentMonth": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "documentDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "genCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "auxCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "genName": {
+            "type": "string",
+            "nullable": true
+          },
+          "auxName": {
+            "type": "string",
+            "nullable": true
+          },
+          "debit": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "credit": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "financialYear": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64"
           }
         },
         "additionalProperties": false
@@ -638,6 +4898,615 @@
         },
         "additionalProperties": false
       },
+      "IGridOfAccountCodeListDto": {
+        "type": "object",
+        "properties": {
+          "rowDatas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountCodeListDto"
+            },
+            "nullable": true
+          },
+          "total": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "bottomData": {
+            "$ref": "#/components/schemas/AccountCodeListDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "IGridOfAuditLogListDto": {
+        "type": "object",
+        "properties": {
+          "rowDatas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AuditLogListDto"
+            },
+            "nullable": true
+          },
+          "total": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "bottomData": {
+            "$ref": "#/components/schemas/AuditLogListDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "IGridOfBaseListDto": {
+        "type": "object",
+        "properties": {
+          "rowDatas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BaseListDto"
+            },
+            "nullable": true
+          },
+          "total": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "bottomData": {
+            "$ref": "#/components/schemas/BaseListDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "IGridOfBusinessCalendarListDto": {
+        "type": "object",
+        "properties": {
+          "rowDatas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BusinessCalendarListDto"
+            },
+            "nullable": true
+          },
+          "total": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "bottomData": {
+            "$ref": "#/components/schemas/BusinessCalendarListDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "IGridOfEditionListDto": {
+        "type": "object",
+        "properties": {
+          "rowDatas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EditionListDto"
+            },
+            "nullable": true
+          },
+          "total": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "bottomData": {
+            "$ref": "#/components/schemas/EditionListDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "IGridOfGl67ListDto": {
+        "type": "object",
+        "properties": {
+          "rowDatas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Gl67ListDto"
+            },
+            "nullable": true
+          },
+          "total": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "bottomData": {
+            "$ref": "#/components/schemas/Gl67ListDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "IGridOfOrganizationUnitListDto": {
+        "type": "object",
+        "properties": {
+          "rowDatas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrganizationUnitListDto"
+            },
+            "nullable": true
+          },
+          "total": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "bottomData": {
+            "$ref": "#/components/schemas/OrganizationUnitListDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "IGridOfRoleListDto": {
+        "type": "object",
+        "properties": {
+          "rowDatas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RoleListDto"
+            },
+            "nullable": true
+          },
+          "total": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "bottomData": {
+            "$ref": "#/components/schemas/RoleListDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "IGridOfTenantListDto": {
+        "type": "object",
+        "properties": {
+          "rowDatas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TenantListDto"
+            },
+            "nullable": true
+          },
+          "total": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "bottomData": {
+            "$ref": "#/components/schemas/TenantListDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "IGridOfUserListDto": {
+        "type": "object",
+        "properties": {
+          "rowDatas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserListDto"
+            },
+            "nullable": true
+          },
+          "total": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "bottomData": {
+            "$ref": "#/components/schemas/UserListDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ListResultDtoOfAccountCodeWithLevelDto": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountCodeWithLevelDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ListResultDtoOfFlatPermissionWithLevelDto": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FlatPermissionWithLevelDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ListResultDtoOfOrganizationUnitWithLevelDto": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrganizationUnitWithLevelDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LoginVm": {
+        "required": [
+          "password",
+          "username"
+        ],
+        "type": "object",
+        "properties": {
+          "tenancyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "username": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "password": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrganizationUnitDto": {
+        "type": "object",
+        "properties": {
+          "parentId": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "displayName": {
+            "type": "string",
+            "nullable": true
+          },
+          "memberCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "roleCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "lastModificationTime": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastModifierUserId": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "creationTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creatorUserId": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrganizationUnitEditDto": {
+        "type": "object",
+        "properties": {
+          "parentId": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "displayName": {
+            "type": "string",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrganizationUnitListDto": {
+        "type": "object",
+        "properties": {
+          "parentId": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "parentDisplayName": {
+            "type": "string",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "displayName": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrganizationUnitWithLevelDto": {
+        "type": "object",
+        "properties": {
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrganizationUnitWithLevelDto"
+            },
+            "nullable": true
+          },
+          "parentId": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "displayName": {
+            "type": "string",
+            "nullable": true
+          },
+          "memberCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "roleCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "lastModificationTime": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastModifierUserId": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "creationTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "creatorUserId": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RefreshTokenVm": {
+        "type": "object",
+        "properties": {
+          "refreshToken": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RoleEditDto": {
+        "required": [
+          "displayName",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "name": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "displayName": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "isDefault": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RoleListDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "displayName": {
+            "type": "string",
+            "nullable": true
+          },
+          "isStatic": {
+            "type": "boolean"
+          },
+          "isDefault": {
+            "type": "boolean"
+          },
+          "creationTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SelectedItemsOfInt32": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SelectedItemsOfInt64": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      },
+      "String": {
+        "type": "string"
+      },
+      "TenantEditDto": {
+        "type": "object",
+        "properties": {
+          "tenancyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "connectionString": {
+            "type": "string",
+            "nullable": true
+          },
+          "editionId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TenantListDto": {
+        "type": "object",
+        "properties": {
+          "tenancyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "editionDisplayName": {
+            "type": "string",
+            "nullable": true
+          },
+          "connectionString": {
+            "type": "string",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "creationTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "editionId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TenantLoginInfoDto": {
+        "type": "object",
+        "properties": {
+          "tenancyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
       "TypeCode": {
         "enum": [
           0,
@@ -682,69 +5551,261 @@
           "String"
         ]
       },
-      "EnumType": {
-        "enum": [
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          10,
-          11,
-          12,
-          13,
-          14
+      "UpdateUserPermissionsInput": {
+        "required": [
+          "grantedPermissionNames"
         ],
-        "type": "integer",
-        "format": "int32",
-        "x-enumNames": [
-          "Equals",
-          "StartWith",
-          "EndWith",
-          "Contains",
-          "Bigger",
-          "BiggerEquals",
-          "SmallerEquals",
-          "Smaller",
-          "Between",
-          "BetweenEquals",
-          "NotEquals",
-          "EqualsNull",
-          "NotEqualsNull",
-          "In"
-        ]
+        "type": "object",
+        "properties": {
+          "id": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int64"
+          },
+          "grantedPermissionNames": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
       },
-      "EnumNumber": {
-        "enum": [
-          0,
-          1,
-          2
-        ],
-        "type": "integer",
-        "format": "int32",
-        "x-enumNames": [
-          "Default",
-          "Persian",
-          "Latin"
-        ]
+      "UserEditDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "surname": {
+            "type": "string",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "emailAddress": {
+            "type": "string",
+            "format": "email",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "shouldChangePasswordOnNextLogin": {
+            "type": "boolean"
+          },
+          "isTwoFactorEnabled": {
+            "type": "boolean"
+          },
+          "isLockoutEnabled": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
       },
-      "EnumCharacter": {
-        "enum": [
-          0,
-          1,
-          2
-        ],
-        "type": "integer",
-        "format": "int32",
-        "x-enumNames": [
-          "Default",
-          "Persian",
-          "Arabic"
-        ]
+      "UserListDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "surname": {
+            "type": "string",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "emailAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "lockoutEndDateUtc": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "profilePictureId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "isEmailConfirmed": {
+            "type": "boolean"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserListRoleDto"
+            },
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "creationTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserListRoleDto": {
+        "type": "object",
+        "properties": {
+          "roleId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "roleName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserLoginInfoDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "surname": {
+            "type": "string",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserMenu": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "displayName": {
+            "type": "string",
+            "nullable": true
+          },
+          "customData": {
+            "nullable": true
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserMenuItem"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserMenuItem": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "icon": {
+            "type": "string",
+            "nullable": true
+          },
+          "displayName": {
+            "type": "string",
+            "nullable": true
+          },
+          "order": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "url": {
+            "type": "string",
+            "nullable": true
+          },
+          "customData": {
+            "nullable": true
+          },
+          "target": {
+            "type": "string",
+            "nullable": true
+          },
+          "isEnabled": {
+            "type": "boolean"
+          },
+          "isVisible": {
+            "type": "boolean"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserMenuItem"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserRoleDto": {
+        "type": "object",
+        "properties": {
+          "roleId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "displayName": {
+            "type": "string",
+            "nullable": true
+          },
+          "isAssigned": {
+            "type": "boolean"
+          },
+          "inheritedFromOrganizationUnit": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
       }
     },
     "securitySchemes": {
