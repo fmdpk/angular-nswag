@@ -1,11 +1,21 @@
 const fs = require("fs");
 const path = require("path");
+const {execSync} = require("child_process");
 
 const inputFile = path.join(__dirname, "../swagger.json");
-const outputDir = path.join(__dirname, "../src/app/generated");
+const outputDirSwagger = path.join(__dirname, "../src/app/generated/swagger");
+const outputDirNswag = path.join(__dirname, "../src/app/generated/nswag");
+const template = fs.readFileSync(
+  path.join(__dirname, "../templates/client.nswag.json"),
+  "utf8"
+);
 
-if (!fs.existsSync(outputDir)) {
-  fs.mkdirSync(outputDir, { recursive: true });
+if (!fs.existsSync(outputDirSwagger)) {
+  fs.mkdirSync(outputDirSwagger, {recursive: true});
+}
+
+if (!fs.existsSync(outputDirNswag)) {
+  fs.mkdirSync(outputDirNswag, {recursive: true});
 }
 
 const swagger = JSON.parse(fs.readFileSync(inputFile, "utf8"));
@@ -86,6 +96,7 @@ function resolveSchemas(refs, allSchemas) {
   return collected;
 }
 
+
 for (const [groupName, paths] of Object.entries(groups)) {
 
   const refs = new Set();
@@ -111,12 +122,40 @@ for (const [groupName, paths] of Object.entries(groups)) {
     security: swagger.security
   };
 
-  const filename = `${groupName}.swagger.json`;
+  const kebab = groupName
+    .replace(/([a-z])([A-Z])/g, "$1-$2")
+    .toLowerCase();
+
+  const filename = `${kebab}.swagger.json`;
 
   fs.writeFileSync(
-    path.join(outputDir, filename),
+    path.join(outputDirSwagger, filename),
     JSON.stringify(result, null, 2)
   );
 
   console.log(`Generated ${filename}`);
+
+  const nswag = template
+    .replace("__SWAGGER__", `../../../../src/app/generated/swagger/${kebab}.swagger.json`)
+    .replace(
+      "__OUTPUT__",
+      `../../../../src/app/api/${kebab}/${kebab}.client.ts`
+    );
+
+  fs.writeFileSync(
+    path.join(outputDirNswag, `${kebab}.nswag.json`),
+    nswag
+  );
+}
+
+const files = fs
+  .readdirSync(outputDirNswag)
+  .filter(f => f.endsWith(".nswag.json"))
+  .sort();
+
+for (const file of files) {
+  console.log(`Running ${file}...`);
+  execSync(`nswag run "${path.join(outputDirNswag, file)}"`, {
+    stdio: "inherit"
+  });
 }
